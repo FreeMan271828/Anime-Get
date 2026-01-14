@@ -106,7 +106,7 @@ const uploadCover = async (e) => {
     formData.append('file', file);
     try {
         const res = await apiClient.post('/api/upload', formData);
-        form.value.cover_image = res.data.key.substring(1);
+        form.value.cover_image = res.data.key
     } catch(e) {
         alert('图片上传失败');
     }

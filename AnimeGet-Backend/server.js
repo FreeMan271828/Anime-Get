@@ -55,16 +55,18 @@ const upload = multer({
   })
 });
 
-// --- 3. Joi 数据校验 Schema ---
 const animeSchema = Joi.object({
-    title_cn: Joi.string().required(),
-    title_jp: Joi.string().required(),
-    official_site: Joi.string().uri().required(),
-    broadcast_day: Joi.number().integer().min(0).max(6).required(),
-    broadcast_time: Joi.string().pattern(/^([01]\d|2[0-3]):([0-5]\d)$/).required(),
-    status: Joi.string().valid('PLAN', 'WATCHING', 'COMPLETED', 'ON_HOLD', 'DROPPED').required(),
-    type_id: Joi.number().integer().required(),
-    cover_image: Joi.string().allow('').optional()
+    name: Joi.string().required(),
+    type: Joi.string().required(),
+    release_date: Joi.date().iso().required(),
+    total_episodes: Joi.number().integer().allow(null).optional(),
+    url: Joi.string().uri({
+        scheme: [
+            /https?/, 
+        ]
+    }).allow('').optional(),
+    cover_image: Joi.string().allow('').optional(),
+    reason: Joi.string().allow('').optional()
 });
 
 // --- 新增: 用户注册和登录的校验 Schema ---
@@ -267,7 +269,7 @@ app.post('/api/anime',authenticateToken, async (req, res) => {
   try {
     await client.query('BEGIN');
     
-    if(value.total_episodes == null){
+    if(value.type === 1 && value.total_episodes === null){
       value.total_episodes = 12;
     }
 

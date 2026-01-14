@@ -7,6 +7,12 @@
 
 作为老二次元，一直想要找一个符合我心意的番剧统计工具，曾经试过纸质、excel、obsidian...但都不太令我满意。同时作为一名程序员，想趁着这段空闲的时间来做一个符合我心意的工具。
 
+| 暗色 | 亮色 |
+| :---: | :---: |
+| ![](https://raw.githubusercontent.com/FreeMan271828/Photo/refs/heads/main/AnimeGet/image.png) | ![](https://raw.githubusercontent.com/FreeMan271828/Photo/refs/heads/main/AnimeGet/image-3.png) |
+| **添加番剧** | **番剧详情** |
+| ![](https://raw.githubusercontent.com/FreeMan271828/Photo/refs/heads/main/AnimeGet/image-1.png) | ![](https://raw.githubusercontent.com/FreeMan271828/Photo/refs/heads/main/AnimeGet/image-2.png) |
+
 ### ✨ 主要功能
 
 - **番剧管理**: 轻松添加、更新和分类番剧（想看、在看、看过、弃坑）。
@@ -27,12 +33,13 @@
 ## 🚀 如何部署
 
 1. 确保本地已安装 Docker 和 Docker Compose。
-2. 克隆项目到本地。
+2. 克隆项目到本地Linux环境。
 3. 修改配置文件：
    1. 修改后端配置文件 `AnimeGet-Backend/.env`，配置好数据库、S3、以及后端 Port。
    2. 修改`docker-compose.yaml`，修改`services:frontend:ports`对外暴露的端口
 4. 在你的数据库中运行 `/DataBase/tables.sql`，创建表格和种子数据。
-5. 在项目根目录下运行：
+5. 在项目根目录下创建两个文件: `/env/frontend.env` `/env/frontend.env`，把前后端的env文件复制进去
+6. 在项目根目录下运行：
    ```bash
    docker-compose up --build -d
    ```
@@ -66,9 +73,9 @@ As a veteran anime fan, I have always been looking for an anime tracking tool th
 3. Modify configuration files:
    1. Modify the backend configuration file `AnimeGet-Backend/.env` to configure the database, S3, and backend Port.
    2. Modify`docker-compose.yaml`to exhange the exposed port`services:frontend:ports`
-
 4. Run `/DataBase/tables.sql` in your database to create tables and seed data.
-5. Run the following command in the project root directory:
+5. Create two files in the project root directory: `/env/frontend.env` and copy the frontend and backend environment files into them.
+6. Run the following command in the project root directory:
    ```bash
    docker-compose up --build -d
    ```

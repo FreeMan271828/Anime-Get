@@ -90,7 +90,7 @@ exports.createAnime = async (req, res, next) => {
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
-      
+        
       const animeRes = await client.query(
         `INSERT INTO anime (names, release_date, total_episodes, type, status, cover_image, url) 
          VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
