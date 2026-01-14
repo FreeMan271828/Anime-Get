@@ -33,19 +33,26 @@ apiClient.interceptors.response.use(
   },
   error => {
     // 对响应错误做点什么
-    if (error.response && error.response.status === 401) {
-      // 401 Unauthorized 错误通常表示 token 无效或过期
-      console.error('Authentication error: Token is invalid or expired.');
-      
-      // 清除本地存储的无效 token
-      localStorage.removeItem('authToken');
-      
-      // 使用 router 将用户重定向到登录页面
-      // 使用 replace 防止用户通过浏览器后退按钮回到之前的页面
-      router.replace({ name: 'Login' });
-      
-      // 也可以给用户一个提示
-      alert('您的登录已过期，请重新登录。');
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+        case 403:
+          // 401 Unauthorized 错误通常表示 token 无效或过期
+          console.error('Authentication error: Token is invalid or expired.');
+          
+          // 清除本地存储的无效 token
+          localStorage.removeItem('authToken');
+          
+          // 使用 router 将用户重定向到登录页面
+          // 使用 replace 防止用户通过浏览器后退按钮回到之前的页面
+          router.replace({ name: 'Login' });
+          
+          // 也可以给用户一个提示
+          alert('您的登录已过期，请重新登录。');
+      }
+    }
+    else {
+      console.error("网络错误或后端服务未响应:", error.message);
     }
     
     // 返回一个被拒绝的 Promise，这样 .catch() 就会被触发

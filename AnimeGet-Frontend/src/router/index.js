@@ -9,7 +9,6 @@ import MainLayout from '../views/MainLayout.vue';
 import Login from '../views/Login.vue';
 
 const routes = [
-  // 1. 登录路由：不需要认证
   {
     path: '/login',
     name: 'Login',

@@ -1,14 +1,12 @@
-version: '3.8'
-
 services:
   backend:
     build: ./AnimeGet-Backend
     container_name: anime-backend
     restart: always
-    ports:
-      - "3000:3000"
     env_file:
       - ./AnimeGet-Backend/.env
+    expose:
+      - "3000"
     networks:
       - anime-network
 
@@ -17,7 +15,7 @@ services:
     container_name: anime-frontend
     restart: always
     ports:
-      - "8090:8090"
+      - "8090:80"
     depends_on:
       - backend
     networks:

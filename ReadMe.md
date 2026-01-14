@@ -30,28 +30,12 @@
 2. 克隆项目到本地。
 3. 修改配置文件：
    1. 修改后端配置文件 `AnimeGet-Backend/.env`，配置好数据库、S3、以及后端 Port。
-   2. 修改前端配置文件 `AnimeGet-Frontend/.env`，修改后端的 api 基址。
-   3. 修改 nginx 配置文件 `AnimeGet-Frontend/nginx.conf`，修改暴露的 ip 和 port。
+   2. 修改`docker-compose.yaml`，修改`services:frontend:ports`对外暴露的端口
 4. 在你的数据库中运行 `/DataBase/tables.sql`，创建表格和种子数据。
 5. 在项目根目录下运行：
    ```bash
    docker-compose up --build -d
    ```
-6. 访问你定义的 ip 和 port 即可使用。
-
-## 📝 更新日志
-
-### v1.1
-
-- [x] 增加番剧排序功能，排序可以按照上映时间（默认）、最近一次观看时间、观看次数、评分
-- [x] 增加番剧的观看地址跳转功能
-- [x] 可以修改自己的观看时间，观看时间可以精确到日或月
-- [x] 正在观看/追完的番剧，可以为某一集增加评论
-- [x] 可以为番剧输入一个别名
-- [x] 增加深色模式功能
-- [x] 增加搜索功能（名称、别名、观看时间）
-
----
 
 <a name="english"></a>
 ## 📖 Project Introduction
@@ -81,23 +65,10 @@ As a veteran anime fan, I have always been looking for an anime tracking tool th
 2. Clone the project to your local machine.
 3. Modify configuration files:
    1. Modify the backend configuration file `AnimeGet-Backend/.env` to configure the database, S3, and backend Port.
-   2. Modify the frontend configuration file `AnimeGet-Frontend/.env` to change the backend API base URL.
-   3. Modify the nginx configuration file `AnimeGet-Frontend/nginx.conf` to change the exposed IP and port.
+   2. Modify`docker-compose.yaml`to exhange the exposed port`services:frontend:ports`
+
 4. Run `/DataBase/tables.sql` in your database to create tables and seed data.
 5. Run the following command in the project root directory:
    ```bash
    docker-compose up --build -d
    ```
-6. Access the application via the IP and port you defined.
-
-## 📝 Changelog
-
-### v1.1
-
-- [x] Added anime sorting function (Release Date (default), Last Watched, Watch Count, Rating)
-- [x] Added anime watch link redirection
-- [x] Allow modifying personal watch dates (precise to day or month)
-- [x] Added episode-specific comments for watching/completed anime
-- [x] Added alias support for anime
-- [x] Added Dark Mode
-- [x] Added search function (Name, Alias, Watch Date)
