@@ -1,9 +1,9 @@
- import axios from 'axios';
+import axios from 'axios';
 import router from '../router'; // 导入 Vue Router 实例
 
 // 1. 创建一个新的 Axios 实例
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000', // 生产环境使用相对路径，开发环境可配置 .env
+  baseURL: import.meta.env.VITE_API_BASE_URL, // 生产环境使用相对路径，开发环境可配置 .env
   timeout: 10000, // 请求超时时间
 });
 

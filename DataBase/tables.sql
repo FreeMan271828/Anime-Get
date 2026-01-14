@@ -17,6 +17,9 @@ CREATE TABLE anime (
     release_date DATE, -- 上映时间，DATE类型足够
     total_episodes INT -- 总集数
 	type  VARCHAR -- 类型
+    status VARCHAR -- 状态
+    cover_image VARCHAR -- 封面图
+    url   VARCHAR   -- 观看链接
 );
 
 COMMENT ON COLUMN anime.id IS '动画唯一ID';
@@ -100,13 +103,15 @@ CREATE TABLE anime_types (
 -- 初始化一些基础类型
 INSERT INTO anime_types (label) VALUES ('TV动画'), ('剧场版'), ('OVA'), ('SP');
 
--- 2. 修改 Anime 表
--- 添加 status 字段 (如果还没加)
-ALTER TABLE anime ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'WAIT';
--- 添加 封面图片 字段
-ALTER TABLE anime ADD COLUMN IF NOT EXISTS cover_image VARCHAR(500);
--- 修改 type 字段，为了兼容旧数据，我们暂时保留 varchar，但在后端逻辑中关联 anime_types
--- 如果希望强关联，可以执行: ALTER TABLE anime ADD COLUMN type_id INT REFERENCES anime_types(id); (这里暂时保持灵活)
 
--- 3. 确保 History 表和 Comment 表结构符合之前的定义
--- (假设之前的表已存在，不再重复创建，仅确保数据完整性)
+CREATE TABLE "user" ( -- 使用双引号以避免 "user" 关键字冲突
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE, -- 用户名，设置长度限制且唯一
+    password_hash TEXT NOT NULL, -- 存储密码的哈希值，而不是明文密码！
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW() -- 账户创建时间
+);
+COMMENT ON TABLE "user" IS '用户表';
+COMMENT ON COLUMN "user".id IS '用户唯一ID';
+COMMENT ON COLUMN "user".username IS '用户名';
+COMMENT ON COLUMN "user".password_hash IS '存储bcrypt或类似算法生成的密码哈希值';
+COMMENT ON COLUMN "user".created_at IS '用户注册时间';
