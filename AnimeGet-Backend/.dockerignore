@@ -1,0 +1,18 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Environment variables
+.env
+
+# Node
+node_modules
+npm-debug.log
+
+# IDE / Editor specific
+.vscode
+.idea
