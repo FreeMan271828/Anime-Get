@@ -21,7 +21,7 @@
 
 - **前端**: Vue 3, Vite, Tailwind CSS, Axios
 - **后端**: Node.js, Express
-- **存储**: AWS S3 (这里推荐[RustFs]{https://github.com/rustfs/rustfs})，PostgreSQL
+- **存储**: AWS S3 (这里推荐[RustFs](https://github.com/rustfs/rustfs))，PostgreSQL
 - **部署**: Docker, Docker Compose, Nginx
 
 ## 🚀 如何部署
@@ -56,7 +56,7 @@ As a veteran anime fan, I have always been looking for an anime tracking tool th
 
 - **Frontend**: Vue 3, Vite, Tailwind CSS, Axios
 - **Backend**: Node.js, Express
-- **Storage**: AWS S3 (I recommand [RustFs]{https://github.com/rustfs/rustfs}), PostgreSQL
+- **Storage**: AWS S3 (I recommand [RustFs](https://github.com/rustfs/rustfs)), PostgreSQL
 - **Deployment**: Docker, Docker Compose, Nginx
 
 ## 🚀 How to Deploy
