@@ -151,7 +151,7 @@ exports.getAnimeById = async (req, res, next) => {
 
 exports.updateAnimeInfo = async (req, res, next) => {
     const { id } = req.params;
-    const { names, type, url, cover_image } = req.body;
+    const { names, type, url, cover_image, release_date } = req.body;
     const fieldsToUpdate = [];
     const values = [];
     let paramIndex = 1;
@@ -172,7 +172,10 @@ exports.updateAnimeInfo = async (req, res, next) => {
       fieldsToUpdate.push(`cover_image = $${paramIndex++}`);
       values.push(cover_image);
     }
-    
+    if(release_date!==undefined){
+      fieldsToUpdate.push(`release_date = $${paramIndex++}`);
+      values.push(release_date);
+    }
     if (fieldsToUpdate.length === 0) {
       return res.status(400).json({ message: 'No valid fields provided for update.' });
     }

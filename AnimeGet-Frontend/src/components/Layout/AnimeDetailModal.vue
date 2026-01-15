@@ -123,6 +123,7 @@
                   <div><label class="text-xs font-medium text-gray-500 dark:text-gray-400">第二名称 (可选)</label><input type="text" v-model="editableDetail.anime.names[1]" class="w-full border dark:border-gray-600 rounded p-2 text-base dark:bg-gray-700 dark:text-gray-100"></div>
                   <div><label class="text-xs font-medium text-gray-500 dark:text-gray-400">类型</label><select v-model="editableDetail.anime.type" class="w-full border dark:border-gray-600 rounded p-2 text-base dark:bg-gray-700 dark:text-gray-100"><option v-for="t in types" :key="t.id" :value="t.label">{{ t.label }}</option></select></div>
                   <div><label class="text-xs font-medium text-gray-500 dark:text-gray-400">观看链接</label><input type="text" v-model="editableDetail.anime.url" class="w-full border dark:border-gray-600 rounded p-2 text-sm dark:bg-gray-700 dark:text-gray-100"></div>
+                  <div><label class="text-xs font-medium text-gray-500 dark:text-gray-400">上映时间</label><input type="text" v-model="editableDetail.anime.release_date" class="w-full border dark:border-gray-600 rounded p-2 text-sm dark:bg-gray-700 dark:text-gray-100"></div>
                 </div>
                 
               </div>
@@ -285,7 +286,8 @@ const saveChanges = async () => {
     const animePayload = {
       names: editableDetail.value.anime.names,
       type: editableDetail.value.anime.type,
-      url: editableDetail.value.anime.url
+      url: editableDetail.value.anime.url,
+      release_date: editableDetail.value.anime.release_date,
     };
     const updateAnimePromise = apiClient.put(`/api/anime/${props.detail.anime.id}`, animePayload);
     const historyUpdatePromises = editableDetail.value.history.map((editedHistory, index) => {
